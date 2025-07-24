@@ -5,8 +5,8 @@ import Container from "../Container/Container.jsx";
 
 export default function Header() {
   return (
-    <Container>
-      <header className={css.header}>
+    <header className={css.header}>
+      <Container>
         <nav className={css.nav}>
           <NavLink to="/" className={css.logo}>
             <img src={logo} alt="Renault logo" className={css.img} />
@@ -22,7 +22,7 @@ export default function Header() {
             {/* favorites */}
           </div>
         </nav>
-      </header>
-    </Container>
+      </Container>
+    </header>
   );
 }

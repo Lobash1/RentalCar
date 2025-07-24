@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
-    <Container>
-      <div className={css.content}>
+    <div className={css.content}>
+      <Container>
         <h1 className={css.title}>Find your perfect rental car</h1>
         <h2 className={css.text}>
           Reliable and budget-friendly rentals for any journey
@@ -13,7 +13,7 @@ export default function HeroSection() {
         <Link to="/catalog" className={css.btn}>
           View Catalog
         </Link>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }

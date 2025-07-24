@@ -63,9 +63,9 @@ button {
   background-color: var(--button);
 }
 
-button:hover {
+/* button:hover {
   background-color: var(--button-hover);
-}
+} */
 
 a {
   text-decoration: none;
