@@ -1,7 +1,8 @@
-import { carsApi } from "../../api/carsApi.js";
+// import { carsAPI } from "../../api/carsAPI.js";
 import CarCard from "../CarCard/CarCard.jsx";
 import { useEffect, useState } from "react";
 import css from "./CarList.module.css";
+import { temp } from "../../api/temp.js";
 
 export default function CarList() {
   const [cars, setCars] = useState([]);
@@ -10,7 +11,7 @@ export default function CarList() {
   useEffect(() => {
     const loadCars = async () => {
       try {
-        const data = await carsApi(page);
+        const data = await temp(page);
 
         setCars((prev) => [...prev, ...data.cars]);
       } catch (error) {
