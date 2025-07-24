@@ -1,4 +1,4 @@
-import { carsApi } from "../../api/carsApi.js";
+import { carsApi } from "../../api/carsApi";
 import CarCard from "../CarCard/CarCard.jsx";
 import { useEffect, useState } from "react";
 import css from "./CarList.module.css";
