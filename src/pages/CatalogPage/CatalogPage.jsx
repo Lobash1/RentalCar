@@ -1,17 +1,14 @@
 import FilterPanel from "../../components/FilterPanel/FilterPanel.jsx";
 import CarList from "../../components/CarList/CarList.jsx";
-import LoadMoreButton from "../../components/LoadMoreButton/LoadMoreButton.jsx";
+// import LoadMoreButton from "../../components/LoadMoreButton/LoadMoreButton.jsx";
 import Container from "../../components/Container/Container.jsx";
-
-// Pagination
 
 export default function CatalogPage() {
   return (
     <Container>
       <FilterPanel />
       <CarList />
-      <LoadMoreButton />
-      <h1>CatalogPage</h1>
+      {/* <LoadMoreButton />/ */}
     </Container>
   );
 }

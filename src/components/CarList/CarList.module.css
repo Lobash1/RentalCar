@@ -1,30 +1,19 @@
-/* .catalog {
+.catalog {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  width: 100%;
+  min-width: 1280px;
+  /* box-sizing: border-box; */
 }
 
 .list {
-} */
-
-.btn {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  position: absolute;
-  width: 156px;
-  height: 44px;
-  left: calc(50% - 156px / 2);
-  top: 1724px;
-  border: 1px solid #3470ff;
-  border-radius: 12px;
-
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--black);
-}
-
-.btn:hover {
-  border: 1px solid #0b44cd;
+  display: grid;
+  grid-template-columns: repeat(4, 276px);
+  column-gap: 32px;
+  row-gap: 48px;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
 }

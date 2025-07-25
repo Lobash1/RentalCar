@@ -1,8 +1,9 @@
-// import { carsAPI } from "../../api/carsAPI.js";
-import CarCard from "../CarCard/CarCard.jsx";
 import { useEffect, useState } from "react";
 import css from "./CarList.module.css";
 import { temp } from "../../api/temp.js";
+
+import LoadMoreButton from "../LoadMoreButton/LoadMoreButton.jsx";
+import CarCard from "../CarCard/CarCard.jsx";
 
 export default function CarList() {
   const [cars, setCars] = useState([]);
@@ -11,9 +12,13 @@ export default function CarList() {
   useEffect(() => {
     const loadCars = async () => {
       try {
-        const data = await temp(page);
+        const data = await temp(page, 12);
 
-        setCars((prev) => [...prev, ...data.cars]);
+        if (page === 1) {
+          setCars(data.cars);
+        } else {
+          setCars((prev) => [...prev, ...data.cars]);
+        }
       } catch (error) {
         console.error("Error fetching cars:", error);
       }
@@ -22,6 +27,10 @@ export default function CarList() {
     loadCars();
   }, [page]);
 
+  const handleLoadMore = () => {
+    setPage((prev) => prev + 1);
+  };
+
   return (
     <div className={css.catalog}>
       <ul className={css.list}>
@@ -29,10 +38,7 @@ export default function CarList() {
           <CarCard key={`${car.id}-${index}`} car={car} />
         ))}
       </ul>
-
-      <button className={css.btn} onClick={() => setPage((prev) => prev + 1)}>
-        Load More
-      </button>
+      <LoadMoreButton onClick={handleLoadMore} />
     </div>
   );
 }
