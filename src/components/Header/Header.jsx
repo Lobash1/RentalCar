@@ -13,10 +13,16 @@ export default function Header() {
           </NavLink>
 
           <div className={css.navlink}>
-            <NavLink to="/" className={css.link}>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? css.active : css.link)}
+            >
               Home
             </NavLink>
-            <NavLink to="/catalog" className={css.link}>
+            <NavLink
+              to="/catalog"
+              className={({ isActive }) => (isActive ? css.active : css.link)}
+            >
               Catalog
             </NavLink>
             {/* favorites */}

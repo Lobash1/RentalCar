@@ -1,15 +1,15 @@
 .btn {
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  position: absolute;
+
   width: 156px;
   height: 44px;
-  left: calc(50% - 156px / 2);
-  top: 1724px;
+
+  margin: 40px auto;
+
   border: 1px solid #3470ff;
   border-radius: 12px;
 
@@ -17,6 +17,7 @@
   font-size: 16px;
   line-height: 1.25;
   color: var(--black);
+  cursor: pointer;
 }
 
 .btn:hover {

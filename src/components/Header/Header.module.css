@@ -1,17 +1,31 @@
 .header {
   background-color: var(--grei-badges);
-  padding: 26px 120px;
+  padding: 24px 0px;
 }
 
 .nav {
+  /* padding: 24px 120px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   width: 104px;
   height: 16px;
+}
+
+.active {
+  color: var(--button-hover);
+  font-weight: 600;
+  border-bottom: 2px solid var(--button-hover);
+}
+
+.link,
+.active {
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 .img {

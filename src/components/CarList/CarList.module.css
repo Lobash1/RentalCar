@@ -1,5 +1,6 @@
 .catalog {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 40px 0;
   width: 100%;
@@ -16,4 +17,5 @@
   margin: 0 auto;
   padding: 0;
   list-style: none;
+  margin-bottom: 32px;
 }
