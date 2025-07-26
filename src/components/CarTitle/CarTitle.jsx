@@ -8,8 +8,8 @@ export default function CarTitle({
   description,
   address,
   rentalPrice,
+  id,
 }) {
-  //   const address = "123 Example Street, Kiev, Ukraine";
   const parts = address.split(", ");
   const cityCountry = parts.slice(-2).join(", ");
 
@@ -17,7 +17,7 @@ export default function CarTitle({
     <div className={css.detalis}>
       <div className={css.title}>
         <h3 className={css.name}>
-          {brand} {model}, {year} <span className={css.id}>id:{mileage}</span>
+          {brand} {model}, {year} <span className={css.id}>id:{id}</span>
         </h3>
         <div className={css.det}>
           <div className={css.menuLocation}>
@@ -29,9 +29,9 @@ export default function CarTitle({
                 {cityCountry}
                 <span className={css.mileage}>mileage:{mileage}km</span>
               </p>
-              <p className={css.price}>${rentalPrice}</p>
             </div>
           </div>
+          <p className={css.price}>${rentalPrice}</p>
         </div>
       </div>
       <p className={css.text}>{description}</p>
