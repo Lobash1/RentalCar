@@ -17,7 +17,7 @@ export default function CarDetails() {
     const fetchCar = async () => {
       try {
         const data = await getCarById(id);
-        // console.log("cad data:", data);
+
         setCar(data);
       } catch (error) {
         console.error("Error loading cat", error);
@@ -48,7 +48,10 @@ export default function CarDetails() {
             rentalPrice={car.rentalPrice}
             id={car.id}
           />
-          <CarDescriptionBlock rentalConditions={car.rentalConditions} />
+          <CarDescriptionBlock
+            rentalConditions={car.rentalConditions}
+            car={car}
+          />
         </div>
       </div>
     </Container>

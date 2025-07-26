@@ -1,0 +1,39 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 20px;
+  margin: 0 auto;
+  width: 488px;
+  height: 244px;
+}
+.title {
+  width: 488px;
+  height: 24px;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 488px;
+  height: 200px;
+}
+
+.li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+  width: 488px;
+  height: 20px;
+}

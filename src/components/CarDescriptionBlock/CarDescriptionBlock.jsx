@@ -1,8 +1,11 @@
 import css from "./CarDescriptionBlock.module.css";
+import SpecificationsBlock from "../SpecificationsBlock/SpecificationsBlock.jsx";
+import CarExtrasBlock from "../CarExtrasBlock/CarExtrasBlock.jsx";
 
-export default function CarDescriptionBlock({ rentalConditions }) {
+export default function CarDescriptionBlock({ rentalConditions, car }) {
   return (
     <div className={css.descriptions}>
+      {/* div1 */}
       <div className={css.rentalConditions}>
         <h3 className={css.title}>Rental Conditions:</h3>
         <ul className={css.list}>
@@ -16,6 +19,20 @@ export default function CarDescriptionBlock({ rentalConditions }) {
           ))}
         </ul>
       </div>
+      {/* div2 */}
+      <SpecificationsBlock
+        specs={{
+          year: car.year,
+          type: car.type,
+          fuelConsumption: car.fuelConsumption,
+          engineSize: car.engineSize,
+        }}
+      />
+      {/* div3 */}
+      <CarExtrasBlock
+        accessories={car.accessories}
+        functionalities={car.functionalities}
+      />
     </div>
   );
 }

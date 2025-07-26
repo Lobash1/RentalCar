@@ -4,10 +4,10 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 0px;
-  gap: 32px;
+  gap: 110px;
   position: absolute;
   width: 488px;
-  height: 772px;
+  /* height: 772px; */
   left: 832px;
   top: 420px;
 }
@@ -53,9 +53,6 @@
 }
 
 .li {
-  /* 01 */
-
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,8 +61,6 @@
 
   width: 488px;
   height: 20px;
-
-  /* Inside auto layout */
   flex: none;
   order: 0;
   align-self: stretch;
