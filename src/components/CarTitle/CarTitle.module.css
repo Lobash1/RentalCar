@@ -1,0 +1,101 @@
+.detalis {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+  width: 488px;
+  position: absolute;
+  left: 832px;
+  top: 172px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 8px;
+}
+
+.name {
+  font-family: "Manrope";
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: left;
+  color: #101828;
+  margin: 0;
+  width: 100%;
+  position: relative;
+}
+
+.id {
+  position: absolute;
+  left: calc(100% + 16px);
+  top: 8px;
+  font-family: "Manrope";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #8d929a;
+}
+
+.det {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.menuLocation {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  fill: #8d929a;
+}
+
+.locationBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.city {
+  font-size: 14px;
+  line-height: 20px;
+  color: #101828;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mileage {
+  color: #8d929a;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #3470ff;
+  margin: 0;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 20px;
+  color: #475467;
+  margin: 0;
+  width: 100%;
+}

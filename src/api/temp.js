@@ -6,3 +6,8 @@ export const temp = async (page = 1, limit = 12) => {
   });
   return data;
 };
+
+export const getCarById = async (id) => {
+  const { data } = await instance.get(`/cars/${id}`);
+  return data;
+};

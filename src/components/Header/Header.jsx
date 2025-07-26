@@ -5,6 +5,7 @@ import Container from "../Container/Container.jsx";
 
 export default function Header() {
   return (
+    // <Container>
     <header className={css.header}>
       <Container>
         <nav className={css.nav}>
@@ -30,5 +31,6 @@ export default function Header() {
         </nav>
       </Container>
     </header>
+    // </Container>
   );
 }

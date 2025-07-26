@@ -1,5 +1,6 @@
 import { useState } from "react";
 import css from "./CarCard.module.css";
+import { Link } from "react-router-dom";
 
 export default function CarCard({ car }) {
   const {
@@ -63,7 +64,9 @@ export default function CarCard({ car }) {
           </p>
         </div>
       </div>
-      <button className={css.btn}>Read more</button>
+      <Link to={`/catalog/${car.id}`}>
+        <button className={css.btn}>Read more</button>
+      </Link>
     </li>
   );
 }
