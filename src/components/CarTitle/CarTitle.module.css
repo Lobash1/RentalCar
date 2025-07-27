@@ -2,12 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
   gap: 24px;
   width: 488px;
-  position: absolute;
-  left: 832px;
-  top: 172px;
+  margin-top: 20px;
 }
 
 .title {
@@ -18,27 +15,32 @@
   gap: 8px;
 }
 
+.nameBlok {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+}
+
 .name {
-  font-family: "Manrope";
+  align-items: flex-start;
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
-  text-align: left;
   color: #101828;
   margin: 0;
-  width: 100%;
-  position: relative;
+  flex-shrink: 1;
 }
 
 .id {
-  position: absolute;
-  left: calc(100% + 16px);
-  top: 8px;
-  font-family: "Manrope";
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   color: #8d929a;
+  white-space: nowrap;
+  align-items: flex-start;
 }
 
 .det {

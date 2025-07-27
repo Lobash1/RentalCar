@@ -1,5 +1,20 @@
-.cardDelalis {
+.cardDetails {
+  display: flex;
+  gap: 72px;
+  justify-content: space-between;
+  margin-top: 64px;
+  margin-bottom: 104px;
 }
 
 .imgForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 640px;
+  flex-shrink: 0;
+}
+
+.textBlock {
+  flex: 1;
+  min-width: 400px;
 }

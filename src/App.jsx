@@ -1,11 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
-// pages:
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import CatalogPage from "./pages/CatalogPage/CatalogPage.jsx";
 import CarDetalisPage from "./pages/CarDetalisPage/CarDetalisPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
-// components:
 import Header from "./components/Header/Header.jsx";
 
 export default function App() {

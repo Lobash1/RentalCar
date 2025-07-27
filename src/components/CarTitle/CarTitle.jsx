@@ -16,9 +16,13 @@ export default function CarTitle({
   return (
     <div className={css.detalis}>
       <div className={css.title}>
-        <h3 className={css.name}>
-          {brand} {model}, {year} <span className={css.id}>id:{id}</span>
-        </h3>
+        <div className={css.nameBlok}>
+          <h3 className={css.name}>
+            {brand} {model}, {year}
+          </h3>
+          <span className={css.id}>id:{id.slice(-4)}</span>
+        </div>
+
         <div className={css.det}>
           <div className={css.menuLocation}>
             <svg className={css.icon} width="16" height="16">
@@ -27,7 +31,11 @@ export default function CarTitle({
             <div>
               <p className={css.city}>
                 {cityCountry}
-                <span className={css.mileage}>mileage:{mileage}km</span>
+                <span className={css.mileage}>
+                  mileage:
+                  {Number(mileage).toLocaleString("en-US").replace(/,/g, " ")}
+                  km
+                </span>
               </p>
             </div>
           </div>

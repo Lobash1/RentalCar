@@ -3,13 +3,9 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 0px;
   gap: 110px;
-  position: absolute;
   width: 488px;
-  /* height: 772px; */
-  left: 832px;
-  top: 420px;
+  margin-top: 60px;
 }
 
 /* 1div */
