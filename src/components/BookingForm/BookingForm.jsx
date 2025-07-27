@@ -6,7 +6,7 @@ import DatePickerField from "../DatePickerField/DatePickerField.jsx";
 const BookingSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
-  date: Yup.date().nullable().required("Booking date is required"),
+  date: Yup.date().nullable(),
   comment: Yup.string(),
 });
 
@@ -25,48 +25,66 @@ export default function BookingForm() {
         </p>
       </div>
 
-      <Formik
-        initialValues={{ name: "", email: "", date: null, comment: "" }}
-        validationSchema={BookingSchema}
-        onSubmit={handleSubmit}
-      >
-        <Form className={css.formik}>
-          <Field
-            className={css.input}
-            type="text"
-            name="name"
-            placeholder="Name*"
-          />
-          <ErrorMessage name="name" component="div" className={css.error} />
+      <div className={css.inputContainer}>
+        <Formik
+          initialValues={{ name: "", email: "", date: null, comment: "" }}
+          validationSchema={BookingSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form className={css.formik}>
+            <div className={css.fieldWrapper}>
+              <Field
+                className={css.input}
+                type="text"
+                name="name"
+                placeholder="Name*"
+              />
+              <div className={css.errorWrapper}>
+                <ErrorMessage name="name">
+                  {(msg) => <div className={css.error}>{msg}</div>}
+                </ErrorMessage>
+              </div>
+            </div>
 
-          <Field
-            className={css.input}
-            type="email"
-            name="email"
-            placeholder="Email*"
-          />
-          <ErrorMessage name="email" component="div" className={css.error} />
+            <div className={css.fieldWrapper}>
+              <Field
+                className={css.input}
+                type="email"
+                name="email"
+                placeholder="Email*"
+              />
 
-          <Field
-            className={css.input}
-            name="date"
-            component={DatePickerField}
-          />
-          <ErrorMessage name="date" component="div" className={css.error} />
+              <div className={css.errorWrapper}>
+                <ErrorMessage name="email">
+                  {(msg) => <div className={css.error}>{msg}</div>}
+                </ErrorMessage>
+              </div>
+            </div>
 
-          <Field
-            as="textarea"
-            name="comment"
-            className={`${css.input} ${css.comment}`}
-            placeholder="Comment"
-          />
-          <ErrorMessage name="comment" component="div" className={css.error} />
+            <Field
+              className={css.input}
+              name="date"
+              component={DatePickerField}
+            />
 
-          <button className={css.btn} type="submit">
-            Send
-          </button>
-        </Form>
-      </Formik>
+            <Field
+              as="textarea"
+              name="comment"
+              className={`${css.input} ${css.comment}`}
+              placeholder="Comment"
+            />
+            <ErrorMessage
+              name="comment"
+              component="div"
+              className={css.error}
+            />
+
+            <button className={css.btn} type="submit">
+              Send
+            </button>
+          </Form>
+        </Formik>
+      </div>
     </div>
   );
 }

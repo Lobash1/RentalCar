@@ -1,20 +1,10 @@
 .formContainer {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 32px;
-  gap: 24px;
   position: absolute;
   width: 640px;
   height: 488px;
   left: 120px;
   top: 704px;
-
-  /* white */
-  background: #ffffff;
-  /* gray light */
   border: 1px solid #dadde1;
   border-radius: 10px;
 }
@@ -25,60 +15,20 @@
   align-items: flex-start;
   padding: 0px;
   gap: 8px;
-
-  width: 576px;
-  height: 52px;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
+  margin-bottom: 24px;
 }
 
 .title {
-  /* Text */
-
-  width: 173px;
-  height: 24px;
-
-  /* AutoMarket/H3 */
-  font-family: "Manrope";
-  font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  /* identical to box height, or 120% */
-
-  /* main */
-  color: #101828;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
 .text {
-  /* Supporting text */
-
-  width: 576px;
-  height: 20px;
-
-  /* AutoMarket/Body */
-  font-family: "Manrope";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  /* identical to box height, or 125% */
-
-  /* gray */
   color: #8d929a;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0;
 }
 
 .inputContainer {
@@ -89,10 +39,6 @@
   gap: 24px;
   width: 576px;
   height: 348px;
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0;
 }
 
 .formik {
@@ -100,24 +46,26 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 16px;
+  gap: 12px;
   width: 576px;
   height: 280px;
 }
 
 .input {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   padding: 12px 20px;
-  gap: 10px;
   width: 576px;
   height: 48px;
   background-color: #f7f7f7;
   border: none;
   border-radius: 12px;
 }
+
+.errorWrapper {
+  height: 16px;
+  margin-top: 4px;
+  /* overflow: hidden; */
+}
+
 .error {
   color: red;
   font-size: 12px;
@@ -125,17 +73,12 @@
 }
 
 .comment {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   padding: 12px 20px 56px;
-  gap: 10px;
-  width: 576px;
   height: 88px;
-  background: #f7f7f7;
-  border-radius: 12px;
+  margin-top: 10px;
 }
 .btn {
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -145,6 +88,7 @@
   height: 44px;
   background-color: var(--button);
   border-radius: 12px;
+  margin-top: 10px;
 }
 
 .btn:hover {
