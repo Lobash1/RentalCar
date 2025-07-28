@@ -1,69 +1,85 @@
 import css from "./FilterPanel.module.css";
+
 import { useDispatch, useSelector } from "react-redux";
+import {
+  selectBrand,
+  selectPrice,
+  selectMileage,
+} from "../../redux/filters/filtersSelector.js";
 import {
   setBrand,
   setPrice,
-  setMileageFrom,
-  setMileageTo,
+  setMileage,
+  setPage,
 } from "../../redux/filters/filtersSlice.js";
-import { fetchCars } from "../../redux/cars/carsOperations.js";
+import { resetCars } from "../../redux/cars/carsSlice.js";
+
+const brands = [
+  "Aston Martin",
+  "Audi",
+  "BMW",
+  "Bentley",
+  "Buick",
+  "Chevrolet",
+  "Chrysler",
+  "GMC",
+  "HUMMER",
+  "Hyundai",
+  "Kia",
+  "Lamborghini",
+  "Land Rover",
+  "Lincoln",
+  "MINI",
+  "Mercedes-Benz",
+  "Mitsubishi",
+  "Nissan",
+  "Pontiac",
+  "Subaru",
+  "Volvo",
+];
+const prices = [30, 40, 50, 60, 70, 80, 90, 100, 150, 200];
+
+// import { useEffect, useState } from "react";
+// import { temp } from "../../api/temp.js";
+// import { resetCars } from "../../redux/cars/carsSlice.js";
 
 export default function FiltersPanel() {
   const dispatch = useDispatch();
+  const brand = useSelector(selectBrand) ?? "";
+  const price = useSelector(selectPrice);
+  const mileage = useSelector(selectMileage);
 
-  const { brand, price, mileageFrom, mileageTo } = useSelector(
-    (state) => state.filters
-  );
+  // const filters = useSelector(selectFilters);
 
-  const prices = [30, 40, 50, 60, 70, 80, 90, 100, 150, 200];
+  // const cars = useSelector((state) => state.cars.items) || [];
 
-  const brands = [
-    "Aston Martin",
-    "Audi",
-    "BMW",
-    "Bentley",
-    "Buick",
-    "Chevrolet",
-    "Chrysler",
-    "GMC",
-    "HUMMER",
-    "Hyundai",
-    "Kia",
-    "Lamborghini",
-    "Land Rover",
-    "Lincoln",
-    "MINI",
-    "Mercedes-Benz",
-    "Mitsubishi",
-    "Nissan",
-    "Pontiac",
-    "Subaru",
-    "Volvo",
-  ];
+  // const [brands, setBrands] = useState([]);
+  // const [page, setPage] = useState(1);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  // const priceOptions = [
+  //   ...new Set(
+  //     cars
+  //       .filter((car) => car.rentalPrice !== undefined)
+  //       .map((car) => Number(car.rentalPrice?.replace("$", "")))
+  //   ),
+  // ].sort((a, b) => a - b);
 
-    switch (name) {
-      case "brand":
-        dispatch(setBrand(value));
-        break;
-      case "price":
-        dispatch(setPrice(value));
-        break;
-      case "mileageFrom":
-        dispatch(setMileageFrom(value));
-        break;
-      case "mileageTo":
-        dispatch(setMileageTo(value));
-        break;
-      default:
-        break;
-    }
-  };
+  // useEffect(() => {
+  //   async function loadBrands() {
+  //     try {
+  //       const data = await temp(); // масив авто
+  //       const uniqueBrands = [...new Set(data.cars.map((car) => car.make))];
+  //       setBrands(uniqueBrands);
+  //     } catch (error) {
+  //       console.error("Failed to load brands:", error);
+  //     }
+  //   }
+  //   loadBrands();
+  // }, []);
 
   const handleSearch = () => {
-    dispatch(fetchCars());
+    dispatch(resetCars());
+    dispatch(setPage(1)); // ✅ это вызовет useEffect => fetchCars
   };
 
   return (
@@ -76,20 +92,19 @@ export default function FiltersPanel() {
             <select
               className={css.select}
               name="brand"
-              value={brand}
-              onChange={handleChange}
+              value={brand || ""}
+              onChange={(e) => dispatch(setBrand(e.target.value))}
             >
-              <option className={css.options} value="">
-                All brands
-              </option>
-              {brands.map((b) => (
-                <option key={b} value={b}>
-                  {b}
+              <option value="">All brands</option>
+              {brands.map((brand) => (
+                <option key={brand} value={brand}>
+                  {brand}
                 </option>
               ))}
             </select>
           </label>
         </div>
+
         {/* price */}
         <div className={css.field}>
           <label className={css.label}>
@@ -97,44 +112,46 @@ export default function FiltersPanel() {
             <select
               className={css.select}
               name="price"
-              value={price}
-              onChange={handleChange}
+              value={price ?? ""}
+              onChange={(e) => dispatch(setPrice(Number(e.target.value)))}
             >
-              <option value="">Any price</option>
-              {prices.map((p) => (
-                <option key={p} value={p}>
-                  Up to ${p}
+              <option value="">To $</option>
+              {prices.map((price) => (
+                <option key={price} value={price}>
+                  {price}
                 </option>
               ))}
             </select>
           </label>
         </div>
 
-        {/* ========================== */}
-
+        {/* mileage */}
         <div className={css.fieldMile}>
-          <label className={css.label}>Car mileage/km </label>
-
+          <label className={css.label}>Car mileage/km</label>
           <div className={css.mileage}>
             <input
               className={css.inputFrom}
               type="number"
               name="mileageFrom"
               placeholder="From"
-              value={mileageFrom}
-              onChange={handleChange}
+              value={mileage.minMileage}
+              onChange={(e) =>
+                dispatch(setMileage({ minMileage: e.target.value }))
+              }
             />
-
             <input
               className={css.inputTo}
               type="number"
               name="mileageTo"
               placeholder="To"
-              value={mileageTo}
-              onChange={handleChange}
+              value={mileage.maxMileage}
+              onChange={(e) =>
+                dispatch(setMileage({ maxMileage: e.target.value }))
+              }
             />
           </div>
         </div>
+
         <button className={css.btn} type="button" onClick={handleSearch}>
           Search
         </button>

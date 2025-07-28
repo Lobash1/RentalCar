@@ -1,109 +1,52 @@
-import { useEffect, useState } from "react";
-import css from "./CarList.module.css";
-import { temp } from "../../api/temp.js";
-
-import LoadMoreButton from "../LoadMoreButton/LoadMoreButton.jsx";
-import CarCard from "../CarCard/CarCard.jsx";
-import Loader from "../Loader/Loader.jsx";
-
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectCars,
+  selectError,
+  selectIsLoading,
+  selectTotalPages,
+} from "../../redux/cars/carsSelector.js";
 import { selectFilters } from "../../redux/filters/filtersSelector.js";
+import { fetchCars } from "../../redux/cars/carsOperations.js";
+import CarCard from "../CarCard/CarCard.jsx";
+import css from "./CarList.module.css";
+import Loader from "../Loader/Loader.jsx";
+import { setPage } from "../../redux/filters/filtersSlice.js";
+import { useEffect } from "react";
 
 export default function CarList() {
+  const dispatch = useDispatch();
+  const cars = useSelector(selectCars) || [];
   const filters = useSelector(selectFilters);
-  const [cars, setCars] = useState([]);
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const totalPages = useSelector(selectTotalPages);
 
   useEffect(() => {
-    setPage(1);
-    setCars([]);
-    setHasMore(true);
-  }, [filters]);
-
-  useEffect(() => {
-    const loadCars = async () => {
-      setIsLoading(true);
-
-      try {
-        const data = await temp(page, 12);
-        const carsArray = data.cars || [];
-        const filtered = carsArray.filter((car) => {
-          const brand = filters.brand?.trim() || "";
-          const price = filters.price;
-          const mileageFrom = filters.mileageFrom;
-          const mileageTo = filters.mileageTo;
-
-          const matchesBrand = brand
-            ? car.brand.toLowerCase() === brand.toLowerCase()
-            : true;
-
-          const rentalPrice =
-            typeof car.rentalPrice === "string"
-              ? parseInt(car.rentalPrice.replace(/\D/g, ""))
-              : car.rentalPrice;
-
-          const matchesPrice = price ? rentalPrice <= Number(price) : true;
-
-          const matchesMileageFrom = mileageFrom
-            ? car.mileage >= Number(mileageFrom)
-            : true;
-
-          const matchesMileageTo = mileageTo
-            ? car.mileage <= Number(mileageTo)
-            : true;
-
-          return (
-            matchesBrand &&
-            matchesPrice &&
-            matchesMileageFrom &&
-            matchesMileageTo
-          );
-        });
-        // console.log("Raw cars from API:", carsArray);
-        // console.log("Filtered cars:", filtered);
-        if (page === 1) {
-          setCars(filtered);
-        } else {
-          setCars((prev) => [...prev, ...filtered]);
-        }
-
-        if (filtered.length < 12) {
-          setHasMore(false);
-        }
-
-        if (page > 1) {
-          setTimeout(() => {
-            window.scrollBy({ top: 500, behavior: "smooth" });
-          }, 100);
-        }
-      } catch (error) {
-        console.error("Error fetching cars:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadCars();
-  }, [page, filters]);
+    const { page, ...restFilters } = filters;
+    // console.log("CarList useEffect triggered. Filters:", filters);
+    dispatch(fetchCars({ page, limit: 12, filters: restFilters }));
+  }, [dispatch, filters]);
 
   const handleLoadMore = () => {
-    setPage((prev) => prev + 1);
+    const newPage = filters.page + 1;
+    dispatch(setPage(newPage));
   };
+
+  if (error) return <p>Error: {error}</p>;
+  if (!cars.length && !isLoading) return <p>No cars found.</p>;
 
   return (
     <div className={css.catalog}>
       <ul className={css.list}>
-        {cars.map((car) => (
-          <CarCard key={car.id} car={car} />
+        {cars.map((car, index) => (
+          <CarCard key={`${car.id}-${index}`} car={car} />
         ))}
       </ul>
-
       {isLoading && <Loader />}
-      {!isLoading && hasMore && <LoadMoreButton onClick={handleLoadMore} />}
-      {!isLoading && !hasMore && cars.length === 0 && (
-        <p className={css.empty}>No cars found for selected filters.</p>
+      {!isLoading && filters.page < totalPages && (
+        <button onClick={handleLoadMore} className={css.loadMore}>
+          Load more
+        </button>
       )}
     </div>
   );
