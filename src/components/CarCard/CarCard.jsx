@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import css from "./CarCard.module.css";
 import { Link } from "react-router-dom";
 
 export default function CarCard({ car }) {
   const {
+    id,
     mileage,
     img,
     brand,
@@ -17,8 +18,25 @@ export default function CarCard({ car }) {
 
   const [isFavorite, setIsFavorite] = useState(false);
 
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(storedFavorites.includes(id));
+  }, [id]);
+
   const handleToggleFavorite = () => {
-    setIsFavorite((prev) => !prev);
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    let updatedFavorites;
+
+    if (storedFavorites.includes(id)) {
+      updatedFavorites = storedFavorites.filter((favId) => favId !== id);
+      setIsFavorite(false);
+    } else {
+      updatedFavorites = [...storedFavorites, id];
+      setIsFavorite(true);
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   return (
@@ -56,7 +74,7 @@ export default function CarCard({ car }) {
             <p className={css.price}>{`$${rentalPrice}`}</p>
           </div>
           <p className={css.details}>
-            {address.split(", ").slice(1).join("  |  ")} | {rentalCompany} |
+            {address.split(", ").slice(1).join("  |  ")} | {rentalCompany}
           </p>
 
           <p className={css.details}>

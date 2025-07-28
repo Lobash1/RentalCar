@@ -8,10 +8,9 @@ import {
 } from "../../redux/filters/filtersSlice.js";
 import { fetchCars } from "../../redux/cars/carsOperations.js";
 
-// import { Select } from "react-day-picker";
-
 export default function FiltersPanel() {
   const dispatch = useDispatch();
+
   const { brand, price, mileageFrom, mileageTo } = useSelector(
     (state) => state.filters
   );
@@ -69,66 +68,77 @@ export default function FiltersPanel() {
 
   return (
     <div className={css.wrapper}>
-      <label className={css.label}>
-        Choose a brand
-        <select
-          className={css.select}
-          name="brand"
-          value={brand}
-          onChange={handleChange}
-        >
-          <option value="">All brands</option>
-          {brands.map((b) => (
-            <option key={b} value={b}>
-              {b}
-            </option>
-          ))}
-        </select>
-      </label>
+      <div className={css.grid}>
+        {/* brand */}
+        <div className={css.field}>
+          <label className={css.label}>
+            Choose a brand
+            <select
+              className={css.select}
+              name="brand"
+              value={brand}
+              onChange={handleChange}
+            >
+              <option className={css.options} value="">
+                All brands
+              </option>
+              {brands.map((b) => (
+                <option key={b} value={b}>
+                  {b}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        {/* price */}
+        <div className={css.field}>
+          <label className={css.label}>
+            Price/1 hour
+            <select
+              className={css.select}
+              name="price"
+              value={price}
+              onChange={handleChange}
+            >
+              <option value="">Any price</option>
+              {prices.map((p) => (
+                <option key={p} value={p}>
+                  Up to ${p}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
 
-      <label className={css.label}>
-        Price/1 hour
-        <select
-          className={css.input}
-          name="price"
-          value={price}
-          onChange={handleChange}
-        >
-          <option value="">Any price</option>
-          {prices.map((p) => (
-            <option key={p} value={p}>
-              Up to ${p}
-            </option>
-          ))}
-        </select>
-      </label>
+        {/* ========================== */}
 
-      <label className={css.label}>
-        Car mileage/km
-        <input
-          className={css.input}
-          type="number"
-          name="mileageFrom"
-          placeholder="From"
-          value={mileageFrom}
-          onChange={handleChange}
-        />
-      </label>
+        <div className={css.fieldMile}>
+          <label className={css.label}>Car mileage/km </label>
 
-      <label className={css.label}>
-        <input
-          className={css.input}
-          type="number"
-          name="mileageTo"
-          placeholder="To"
-          value={mileageTo}
-          onChange={handleChange}
-        />
-      </label>
+          <div className={css.mileage}>
+            <input
+              className={css.inputFrom}
+              type="number"
+              name="mileageFrom"
+              placeholder="From"
+              value={mileageFrom}
+              onChange={handleChange}
+            />
 
-      <button className={css.btn} type="button" onClick={handleSearch}>
-        Search
-      </button>
+            <input
+              className={css.inputTo}
+              type="number"
+              name="mileageTo"
+              placeholder="To"
+              value={mileageTo}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <button className={css.btn} type="button" onClick={handleSearch}>
+          Search
+        </button>
+      </div>
     </div>
   );
 }
