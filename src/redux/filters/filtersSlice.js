@@ -32,8 +32,8 @@ const filtersSlice = createSlice({
     setPage(state, action) {
       state.page = action.payload;
     },
-    resetCars(state) {
-      state.cars = [];
+    resetFilters() {
+      return initialState;
     },
   },
 });
