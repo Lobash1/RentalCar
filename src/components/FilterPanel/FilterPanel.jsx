@@ -1,4 +1,5 @@
 import css from "./FilterPanel.module.css";
+import Container from "../Container/Container";
 
 import { useDispatch } from "react-redux";
 // import {
@@ -73,6 +74,7 @@ export default function FiltersPanel() {
   };
 
   return (
+    // <Container>
     <div className={css.wrapper}>
       <div className={css.grid}>
         {/* brand */}
@@ -126,7 +128,10 @@ export default function FiltersPanel() {
               placeholder="From"
               value={localMileage.minMileage}
               onChange={(e) =>
-                setLocalMileage({ ...localMileage, minMileage: e.target.value })
+                setLocalMileage({
+                  ...localMileage,
+                  minMileage: e.target.value,
+                })
               }
             />
             <input
@@ -136,7 +141,10 @@ export default function FiltersPanel() {
               placeholder="To"
               value={localMileage.maxMileage}
               onChange={(e) =>
-                setLocalMileage({ ...localMileage, maxMileage: e.target.value })
+                setLocalMileage({
+                  ...localMileage,
+                  maxMileage: e.target.value,
+                })
               }
             />
           </div>
@@ -147,5 +155,6 @@ export default function FiltersPanel() {
         </button>
       </div>
     </div>
+    // </Container>
   );
 }

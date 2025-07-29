@@ -8,7 +8,7 @@ const initialState = {
   page: 1,
   totalCars: 0,
   limit: 12,
-  totalPages: 0,
+  totalPages: 1,
 };
 
 const carsSlice = createSlice({
@@ -30,22 +30,36 @@ const carsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
+        // state.isLoading = false;
+        // const { cars = [], totalCars, limit } = action.payload;
+        // const page = action.meta.arg.page;
+        // if (page === 1) {
+        //   state.items = cars;
+        // } else {
+        //   state.items = [...state.items, ...cars];
+        // }
+        // state.page = page;
+        // state.totalCars = totalCars;
+        // state.limit = limit;
+        // state.totalPages = Math.ceil(totalCars / limit);
+        console.log(
+          "Fetched cars:",
+          action.payload.cars.length,
+          "Page:",
+          action.meta.arg.page
+        );
         state.isLoading = false;
+        state.error = null;
+        state.totalPages = action.payload.totalPages;
 
-        const { cars = [], totalCars, limit } = action.payload;
-        const page = action.meta.arg.page;
-
-        if (page === 1) {
-          state.items = cars; // перезапис для першої сторінки
+        if (action.meta.arg.page === 1) {
+          state.items = action.payload.cars;
         } else {
-          state.items = [...state.items, ...cars]; // додаємо нові машини
+          state.items = [...state.items, ...action.payload.cars];
         }
-
-        state.page = page;
-        state.totalCars = totalCars;
-        state.limit = limit;
-        state.totalPages = Math.ceil(totalCars / limit);
+        state.page = action.meta.arg.page;
       })
+
       .addCase(fetchCars.rejected, (state, action) => {
         state.isLoading = false;
         state.error =
