@@ -1,91 +1,55 @@
 import css from "./FilterPanel.module.css";
-import Container from "../Container/Container";
-
-import { useDispatch } from "react-redux";
-// import {
-//   selectBrand,
-//   selectPrice,
-//   selectMileage,
-// } from "../../redux/filters/filtersSelector.js";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import {
-  setBrand,
-  setPrice,
-  setMileage,
-  setPage,
+  setFilterBrand,
+  setFilterPrice,
+  setFilterMileage,
 } from "../../redux/filters/filtersSlice.js";
+import { getBrands, fetchCars } from "../../redux/cars/carsOperations.js";
 import { resetCars } from "../../redux/cars/carsSlice.js";
-import { useState } from "react";
-
-const brands = [
-  "Aston Martin",
-  "Audi",
-  "BMW",
-  "Bentley",
-  "Buick",
-  "Chevrolet",
-  "Chrysler",
-  "GMC",
-  "HUMMER",
-  "Hyundai",
-  "Kia",
-  "Lamborghini",
-  "Land Rover",
-  "Lincoln",
-  "MINI",
-  "Mercedes-Benz",
-  "Mitsubishi",
-  "Nissan",
-  "Pontiac",
-  "Subaru",
-  "Volvo",
-];
-const prices = ["30", "40", "50", "60", "70", "80", "90"];
-
-// import { useEffect, useState } from "react";
-// import { temp } from "../../api/temp.js";
-// import { resetCars } from "../../redux/cars/carsSlice.js";
+import { selectPriceFilterOptions } from "../../redux/cars/carsSelector.js";
+import { selectFilters } from "../../redux/filters/filtersSelector.js";
+import { normalizeFilters } from "../normalizeFilters.js";
 
 export default function FiltersPanel() {
   const dispatch = useDispatch();
+  const filters = useSelector(selectFilters);
+  const priceFilter = useSelector(selectPriceFilterOptions);
 
-  const [localBrand, setLocalBrand] = useState("");
-  const [localPrice, setLocalPrice] = useState("");
-  const [localMileage, setLocalMileage] = useState({
-    minMileage: "",
-    maxMileage: "",
-  });
+  // const cars = useSelector((state) => state.cars.items) || [];
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    async function loadBrands() {
+      try {
+        const data = await getBrands();
+        setBrands(data);
+      } catch (err) {
+        console.error("Brand fetch error", err);
+      }
+    }
+    loadBrands();
+  }, []);
 
   const handleSearch = () => {
-    dispatch(setBrand(localBrand));
-    dispatch(setPrice(localPrice || null));
-    dispatch(
-      setMileage({
-        minMileage: localMileage.minMileage
-          ? Number(localMileage.minMileage)
-          : null,
-        maxMileage: localMileage.maxMileage
-          ? Number(localMileage.maxMileage)
-          : null,
-      })
-    );
-
-    dispatch(setPage(1));
+    const normalized = normalizeFilters(filters);
     dispatch(resetCars());
+    dispatch(fetchCars({ page: 1, ...normalized }));
   };
+  console.log("FiltersPanel filters:", filters);
 
   return (
-    // <Container>
     <div className={css.wrapper}>
       <div className={css.grid}>
-        {/* brand */}
+        {/* Brand */}
         <div className={css.field}>
           <label className={css.label}>
             Choose a brand
             <select
               className={css.select}
-              name="brand"
-              value={localBrand}
-              onChange={(e) => setLocalBrand(e.target.value)}
+              value={filters.brand}
+              onChange={(e) => dispatch(setFilterBrand(e.target.value))}
             >
               <option value="">All brands</option>
               {brands.map((brand) => (
@@ -97,18 +61,17 @@ export default function FiltersPanel() {
           </label>
         </div>
 
-        {/* price */}
+        {/* Price */}
         <div className={css.field}>
           <label className={css.label}>
             Price/1 hour
             <select
               className={css.select}
-              name="price"
-              value={localPrice}
-              onChange={(e) => setLocalPrice(Number(e.target.value) || "")}
+              value={filters.rentalPrice || ""}
+              onChange={(e) => dispatch(setFilterPrice(Number(e.target.value)))}
             >
               <option value="">To $</option>
-              {prices.map((price) => (
+              {priceFilter.map((price) => (
                 <option key={price} value={price}>
                   {price}
                 </option>
@@ -117,34 +80,30 @@ export default function FiltersPanel() {
           </label>
         </div>
 
-        {/* mileage */}
+        {/* Mileage */}
         <div className={css.fieldMile}>
           <label className={css.label}>Car mileage/km</label>
           <div className={css.mileage}>
             <input
               className={css.inputFrom}
-              type="number"
-              name="mileageFrom"
+              // type="number"
+              // pattern="[0-9]*"
+              // inputMode="numeric"
               placeholder="From"
-              value={localMileage.minMileage}
+              value={filters.mileage.minMileage || ""}
               onChange={(e) =>
-                setLocalMileage({
-                  ...localMileage,
-                  minMileage: e.target.value,
-                })
+                dispatch(setFilterMileage({ minMileage: e.target.value }))
               }
             />
             <input
               className={css.inputTo}
               type="number"
-              name="mileageTo"
+              // pattern="[0-9]*"
+              // inputMode="numeric"
               placeholder="To"
-              value={localMileage.maxMileage}
+              value={filters.mileage.maxMileage || ""}
               onChange={(e) =>
-                setLocalMileage({
-                  ...localMileage,
-                  maxMileage: e.target.value,
-                })
+                dispatch(setFilterMileage({ maxMileage: e.target.value }))
               }
             />
           </div>
@@ -155,6 +114,5 @@ export default function FiltersPanel() {
         </button>
       </div>
     </div>
-    // </Container>
   );
 }

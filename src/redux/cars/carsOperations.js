@@ -1,43 +1,37 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { temp } from "../../api/temp.js";
 import instance from "../../api/axiosInstance.js";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchCars",
-  async ({ page = 1, limit = 12 } = {}, thunkAPI) => {
+  async ({ page = 1, limit = 12, ...filters }, thunkAPI) => {
+    console.log("FetchCars params:", { page, limit, ...filters });
     try {
-      const { brand, price, mileage } = thunkAPI.getState().filters;
-
-      // Формируем параметры запроса для API
-      const params = {
-        page,
-        limit,
-      };
-
-      if (brand) params.brand = brand;
-      // Если API поддерживает фильтрацию по цене, добавляем параметр, например:
-      if (price) params.maxPrice = price; // Проверь в API точное имя параметра!
-
-      // Если API поддерживает фильтрацию по пробегу, добавим:
-      // Здесь пример для minMileage и maxMileage — проверь имена параметров!
-      if (mileage.minMileage) params.minMileage = mileage.minMileage;
-      if (mileage.maxMileage) params.maxMileage = mileage.maxMileage;
-
+      const params = { page, limit, ...filters };
       const response = await instance.get("/cars", { params });
-
-      // Предположим, что API возвращает данные примерно так:
-      // { cars: [...], totalPages: X, totalItems: Y }
-
-      const { cars = [], totalPages = 1, totalItems = 0 } = response.data;
-
-      return {
-        cars,
-        page,
-        totalCars: totalItems,
-        limit,
-        totalPages,
-      };
+      return response.data.cars;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
+export const fetchBrands = createAsyncThunk(
+  "filters/fetchMake",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await temp.get(
+        "https://car-rental-api.goit.global/cars/brand"
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getBrands = async () => {
+  const response = await axios.get("https://car-rental-api.goit.global/brands");
+  return response.data;
+};

@@ -1,46 +1,36 @@
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectCars,
-  selectError,
-  selectIsLoading,
-  selectTotalPages,
-} from "../../redux/cars/carsSelector.js";
-import { selectFilters } from "../../redux/filters/filtersSelector.js";
+import { incrementPage, resetCars } from "../../redux/cars/carsSlice.js";
+import { useEffect } from "react";
 import { fetchCars } from "../../redux/cars/carsOperations.js";
+import { normalizeFilters } from "../../components/normalizeFilters.js";
+
 import CarCard from "../CarCard/CarCard.jsx";
 import css from "./CarList.module.css";
 import Loader from "../Loader/Loader.jsx";
-import { useEffect } from "react";
-import { setPage } from "../../redux/filters/filtersSlice.js";
-import LoadMoreButton from "../LoadMoreButton/LoadMoreButton.jsx";
 
 export default function CarList() {
   const dispatch = useDispatch();
 
-  const cars = useSelector(selectCars) || [];
-  const filters = useSelector(selectFilters);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  const totalPages = useSelector(selectTotalPages);
-  // const page = filters.page;
+  const items = useSelector((state) => state.cars.items);
+  const page = useSelector((state) => state.cars.page);
+  const filters = useSelector((state) => state.filters);
 
   useEffect(() => {
-    dispatch(fetchCars({ page: filters.page, limit: 12 }));
-  }, [dispatch, filters.page, filters.brand, filters.price, filters.mileage]);
+    const normalized = normalizeFilters(filters);
+    dispatch(fetchCars({ page, ...normalized }));
+  }, [dispatch, page, filters]);
 
-  const handleLoadMore = () => {
-    if (filters.page < totalPages) {
-      dispatch(setPage(filters.page + 1));
-    }
-  };
+  // Фільтрація
+  dispatch(resetCars());
+  dispatch(fetchCars({ page: 1, ...normalizeFilters(filters) }));
 
-  if (error) return <p>Error: {error}</p>;
-  if (!cars.length && !isLoading) return <p>No cars found.</p>;
+  // if (error) return <p>Error: {error}</p>;
+  // if (!items.length && !isLoading) return <p>No cars found.</p>;
 
   return (
     <div className={css.catalog}>
       <ul className={css.list}>
-        {cars.map((car, index) => (
+        {items.map((car, index) => (
           <CarCard key={`${car.id}-${index}`} car={car} />
         ))}
       </ul>
@@ -48,12 +38,11 @@ export default function CarList() {
       <button
         className={css.btn}
         onClick={() => {
-          dispatch(setPage(filters.page + 1));
+          dispatch(incrementPage());
         }}
       >
         Load more
       </button>
-      {isLoading && <Loader />}
     </div>
   );
 }
