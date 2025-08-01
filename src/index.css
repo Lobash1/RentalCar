@@ -72,6 +72,12 @@ a {
   color: inherit;
 }
 
+input[type="number"]:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

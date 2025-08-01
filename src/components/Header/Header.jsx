@@ -5,7 +5,6 @@ import Container from "../Container/Container.jsx";
 
 export default function Header() {
   return (
-    // <Container>
     <header className={css.header}>
       <Container>
         <nav className={css.nav}>
@@ -26,11 +25,9 @@ export default function Header() {
             >
               Catalog
             </NavLink>
-            {/* favorites */}
           </div>
         </nav>
       </Container>
     </header>
-    // </Container>
   );
 }

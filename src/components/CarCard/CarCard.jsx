@@ -51,16 +51,16 @@ export default function CarCard({ car }) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
+              fill="currentColor"
               className={css.heartIcon}
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21.752 7.8a5.751 5.751 0 00-9.678-3.924L12 4.949l-.074-.074a5.751 5.751 0 00-8.13 8.13l.074.074L12 21.75l8.13-8.13.074-.074a5.727 5.727 0 001.548-5.796z"
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+           2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+           C13.09 3.81 14.76 3 16.5 3 
+           19.58 3 22 5.42 22 8.5 
+           c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
               />
             </svg>
           </button>

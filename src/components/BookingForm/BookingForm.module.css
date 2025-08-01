@@ -1,15 +1,6 @@
 .formContainer {
-  /* padding: 32px;
-  position: relative;
-  width: 640px;
-  height: 488px;
-  left: 120px;
-  top: 704px;
-  border: 1px solid #dadde1;
-  border-radius: 10px; */
-
   padding: 32px;
-  width: 100%; /* повна ширина батьківського блоку */
+  width: 100%;
   border: 1px solid #dadde1;
   border-radius: 10px;
 }
@@ -68,7 +59,6 @@
 .errorWrapper {
   height: 16px;
   margin-top: 4px;
-  /* overflow: hidden; */
 }
 
 .error {

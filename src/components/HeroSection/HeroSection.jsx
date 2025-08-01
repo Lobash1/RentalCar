@@ -1,8 +1,20 @@
 import css from "./HeroSection.module.css";
 import Container from "../Container/Container.jsx";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader.jsx";
+import { useSelector } from "react-redux";
+import { selectIsLoading } from "../../redux/cars/carsSelector.js";
 
 export default function HeroSection() {
+  const isLoading = useSelector(selectIsLoading);
+
+  if (isLoading) {
+    return (
+      <div className={css.loaderWrapper}>
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div className={css.content}>
       <Container>

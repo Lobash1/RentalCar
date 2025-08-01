@@ -4,7 +4,6 @@
 }
 
 .nav {
-  /* padding: 24px 120px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,7 +20,6 @@
 .active {
   color: var(--button-hover);
   font-weight: 600;
-  border-bottom: 2px solid var(--button-hover);
 }
 
 .link,

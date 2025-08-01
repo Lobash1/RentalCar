@@ -25,9 +25,9 @@ const filtersSlice = createSlice({
         ...action.payload,
       };
     },
-    // resetFilters() {
-    //   return initialState;
-    // },
+    resetFilters() {
+      return initialState;
+    },
   },
 });
 
@@ -35,7 +35,7 @@ export const {
   setFilterBrand,
   setFilterPrice,
   setFilterMileage,
-  // resetFilters,
+  resetFilters,
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;
