@@ -1,16 +1,21 @@
-export const normalizeFilters = (filters) => {
-  const minMileageRaw = filters.mileage?.minMileage ?? "";
-  const maxMileageRaw = filters.mileage?.maxMileage ?? "";
+export function normalizeFilters(filters) {
+  const params = {};
 
-  const mileageFrom = Number(minMileageRaw);
-  const mileageTo = Number(maxMileageRaw);
+  if (filters.brand) {
+    params.brand = filters.brand;
+  }
 
-  return {
-    brand: filters.brand || undefined,
-    rentalPrice: filters.rentalPrice || undefined,
-    mileageFrom:
-      minMileageRaw !== "" && !isNaN(mileageFrom) ? mileageFrom : undefined,
-    mileageTo:
-      maxMileageRaw !== "" && !isNaN(mileageTo) ? mileageTo : undefined,
-  };
-};
+  if (filters.rentalPrice) {
+    params.rentalPrice = filters.rentalPrice;
+  }
+
+  if (filters.mileage?.minMileage) {
+    params.minMileage = Number(filters.mileage.minMileage);
+  }
+
+  if (filters.mileage?.maxMileage) {
+    params.maxMileage = Number(filters.mileage.maxMileage);
+  }
+
+  return params;
+}

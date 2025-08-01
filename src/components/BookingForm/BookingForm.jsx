@@ -2,18 +2,43 @@ import css from "./BookingForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import DatePickerField from "../DatePickerField/DatePickerField.jsx";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const BookingSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
-  date: Yup.date().nullable(),
+  date: Yup.array()
+    .of(Yup.date().nullable())
+    .nullable()
+    .test(
+      "both-dates-present",
+      "Both start and end dates are required",
+      (val) => !val || (val[0] && val[1])
+    ),
   comment: Yup.string(),
 });
 
 export default function BookingForm() {
-  const handleSubmit = (values, actions) => {
-    console.log("Booking form submitted:", values);
-    actions.resetForm();
+  const handleSubmit = async (values, actions) => {
+    try {
+      // Симуляція API-запиту
+      // await new Promise((res) => setTimeout(res, 500));
+
+      iziToast.success({
+        title: "Success",
+        message: "The car has been successfully booked!",
+        position: "bottomRight",
+      });
+
+      actions.resetForm();
+    } catch (error) {
+      iziToast.error({
+        title: "Error",
+        message: "Something went wrong. Please try again.",
+        position: "topRight",
+      });
+    }
   };
 
   return (
@@ -27,7 +52,12 @@ export default function BookingForm() {
 
       <div className={css.inputContainer}>
         <Formik
-          initialValues={{ name: "", email: "", date: null, comment: "" }}
+          initialValues={{
+            name: "",
+            email: "",
+            date: [null, null],
+            comment: "",
+          }}
           validationSchema={BookingSchema}
           onSubmit={handleSubmit}
         >

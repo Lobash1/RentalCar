@@ -1,0 +1,82 @@
+/* Общее окно */
+.react-datepicker {
+  border: 2px solid #4e75ff;
+  border-radius: 16px;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок месяца */
+.react-datepicker__current-month {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f0f0f;
+  margin-bottom: 8px;
+}
+
+/* Навигационные стрелки */
+.react-datepicker__navigation {
+  top: 16px;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #4e75ff;
+  border-width: 2px 2px 0 0;
+  width: 8px;
+  height: 8px;
+}
+
+/* Дни недели */
+.react-datepicker__day-names {
+  border-bottom: 1px solid #4e75ff;
+}
+
+.react-datepicker__day-name {
+  color: #6e6e6e;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+/* Ячейки дней */
+.react-datepicker__day {
+  font-size: 14px;
+  color: #0f0f0f;
+  width: 36px;
+  line-height: 36px;
+  margin: 2px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+/* Ховер на дне */
+.react-datepicker__day:hover {
+  background-color: #eaf0ff;
+}
+
+/* Сегодняшняя дата */
+.react-datepicker__day--today {
+  font-weight: bold;
+  border: 1px solid #4e75ff;
+}
+
+/* Выбранная дата */
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range,
+.react-datepicker__day--in-selecting-range {
+  background-color: #4e75ff;
+  color: white;
+}
+
+/* Диапазон границы */
+.react-datepicker__day--range-start,
+.react-datepicker__day--range-end {
+  background-color: #4e75ff;
+  color: white;
+  border-radius: 50%;
+}
+
+/* Неактивные (предыдущий/следующий месяц) */
+.react-datepicker__day--outside-month {
+  color: #c0c0c0;
+}

@@ -5,9 +5,9 @@ export default function NotFoundPage() {
   return (
     <div className={css.wrapper}>
       <h1 className={css.title}>404</h1>
-      <p className={css.message}>Сторінку не знайдено</p>
+      <p className={css.message}>Page not found</p>
       <Link to="/" className={css.button}>
-        На головну
+        To the main page
       </Link>
     </div>
   );
