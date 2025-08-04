@@ -54,6 +54,7 @@
   background-color: #f7f7f7;
   border: none;
   border-radius: 12px;
+  transition: var(--transition);
 }
 
 .errorWrapper {
@@ -84,6 +85,7 @@
   background-color: var(--button);
   border-radius: 12px;
   margin-top: 10px;
+  transition: var(--transition);
 }
 
 .btn:hover {

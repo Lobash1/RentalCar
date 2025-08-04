@@ -26,21 +26,20 @@ A sleek and responsive car rental catalog application built with **React**, **Re
 
 ## 📁 Project Structure
 
-src/
-├── components/
-│ ├── CarCard/
-│ ├── CarList/
-│ ├── FilterPanel/
-│ └── ...
-├── pages/
-│ ├── HomePage.jsx
-│ ├── CatalogPage.jsx
-│ └── NotFoundPage.jsx
-├── redux/
-│ ├── cars/
-│ ├── filters/
-│ └── favorites/
-└── api/
+📂 Папка / Файл 📄 Опис
+src/components/ Повторно використовувані UI-компоненти
+├── CarCard/ Компонент картки автомобіля
+├── CarList/ Список автомобілів
+├── FilterPanel/ Панель фільтрів
+src/pages/ Сторінки додатку
+├── HomePage.jsx Головна сторінка
+├── CatalogPage.jsx Каталог автомобілів
+└── NotFoundPage.jsx Сторінка 404
+src/redux/ Стан додатку (Redux Toolkit)
+├── cars/ Slice для автомобілів
+├── filters/ Slice для фільтрів
+└── favorites/ Slice для обраного
+src/api/ Запити до бекенду через Axios
 
 ## ⚙️ Installation
 
@@ -57,6 +56,9 @@ npm install
 # Start the development server
 npm run dev
 ```
+
+📖 Maket
+https://www.figma.com/design/A25LdVK3gZOPJaedrkTwWQ/Rental-Car?node-id=1-200&t=k7ft74Sh8U80bQaz-0
 
 🧪 Backend API
 Data is fetched from a provided mock API:

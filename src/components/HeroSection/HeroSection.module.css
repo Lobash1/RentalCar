@@ -1,46 +1,41 @@
 .content {
   background: url(../../assets/HeroPicture1x.jpg);
-
-  padding-bottom: 60px;
-  padding-top: 436px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  padding: 300px 16px 60px;
   text-align: center;
 }
 
 .title {
   font-weight: 700;
-  font-size: 60px;
-  margin-bottom: 16px;
+  font-size: 36px;
   line-height: 120%;
-  text-align: center;
+  margin-bottom: 16px;
   color: var(--white);
 }
 
 .text {
   font-weight: 600;
-  color: var(--white);
-  margin-bottom: 40px;
-
-  font-size: 24px;
+  font-size: 18px;
   line-height: 133%;
-  text-align: center;
+  margin-bottom: 32px;
+  color: var(--white);
 }
 
 .btn {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 276px;
+  width: 100%;
+  max-width: 276px;
   height: 44px;
   background-color: var(--button);
   color: var(--white);
   border-radius: 12px;
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  transition: var(--transition);
 }
 
 .btn:hover {
@@ -52,4 +47,41 @@
   justify-content: center;
   align-items: center;
   height: 300px;
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+  .content {
+    padding-top: 360px;
+    padding-bottom: 60px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .text {
+    font-size: 20px;
+    margin-bottom: 36px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  .content {
+    padding-top: 436px;
+    padding-left: 128px;
+    padding-right: 128px;
+  }
+
+  .title {
+    font-size: 60px;
+  }
+
+  .text {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
 }

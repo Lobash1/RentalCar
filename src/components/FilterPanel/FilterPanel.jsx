@@ -142,13 +142,15 @@ export default function FiltersPanel() {
           </div>
         </div>
 
-        <button className={css.btn} type="button" onClick={handleSearch}>
-          Search
-        </button>
+        <div className={css.buttons}>
+          <button className={css.btn} type="button" onClick={handleSearch}>
+            Search
+          </button>
 
-        <button className={css.btnReset} type="button" onClick={handleReset}>
-          Reset
-        </button>
+          <button className={css.btnReset} type="button" onClick={handleReset}>
+            Reset
+          </button>
+        </div>
       </div>
     </div>
   );

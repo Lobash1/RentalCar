@@ -6,11 +6,7 @@
   gap: 28px;
   width: 276px;
   height: 424px;
-  transition: box-shadow 0.3s;
-}
-
-.card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: var(--transition);
 }
 
 .imgWrapper {
@@ -102,7 +98,6 @@
 .model {
   padding-left: 3px;
   color: var(--button);
-
   font-weight: 500;
 }
 
@@ -135,6 +130,7 @@
   height: 44px;
   background-color: var(--button);
   border-radius: 12px;
+  transition: var(--transition);
 }
 
 .btn:hover {
