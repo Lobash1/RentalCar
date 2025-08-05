@@ -3,72 +3,92 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 110px;
-  width: 488px;
-  margin-top: 60px;
+  gap: 48px;
+  width: 100%;
+  margin-top: 40px;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
-/* 1div */
 .rentalConditions {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
-  gap: 20px;
-  margin: 0 auto;
-  width: 488px;
-  height: 136px;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
+  gap: 16px;
+  width: 100%;
 }
 
 .title {
-  width: 488px;
-  height: 24px;
+  width: 100%;
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 18px;
+  line-height: 22px;
   color: #101828;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
 }
 
 .list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
-  gap: 16px;
-  width: 488px;
-  height: 92px;
+  gap: 12px;
+  width: 100%;
 }
 
 .li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
   gap: 8px;
-
-  width: 488px;
-  height: 20px;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
+  width: 100%;
 }
 
 .text {
-  width: 464px;
-  height: 20px;
+  width: 100%;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
   color: #101828;
+}
+@media (min-width: 768px) {
+  .descriptions {
+    gap: 80px;
+    margin-top: 50px;
+    padding: 0 24px;
+  }
+
+  .title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .list {
+    gap: 16px;
+  }
+
+  .text {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .descriptions,
+  .rentalConditions,
+  .title,
+  .list,
+  .li,
+  .text {
+    width: 488px;
+  }
+
+  .descriptions {
+    gap: 110px;
+    margin-top: 60px;
+    padding: 0;
+  }
+
+  .text {
+    font-size: 16px;
+  }
 }

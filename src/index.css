@@ -1,29 +1,29 @@
-/* === ЗМІННІ === */
 :root {
-  /* Основні кольори */
   --black: #101828;
+  --grei-badges: #f2f4f7;
   --grey: #8e929a;
   --button: #3470ff;
   --button-hover: #0b44cd;
-  --grey-light: #dadde1;
-  --grei-badges: #f2f4f7;
   --grei-input: #f7f7f7;
   --white: #ffffff;
 
-  /* Шрифти */
   --font-main: "Manrope", sans-serif;
   --font-calendar: "Inter", sans-serif;
 
   --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset стилів */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
 }
 
 html {
@@ -72,4 +72,18 @@ input[type="number"]:focus {
   outline: none;
   box-shadow: none;
   border: none;
+}
+*[style*="width: 100%"] {
+  outline: 2px solid orange;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }

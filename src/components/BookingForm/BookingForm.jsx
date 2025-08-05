@@ -8,23 +8,14 @@ import "izitoast/dist/css/iziToast.min.css";
 const BookingSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
-  date: Yup.array()
-    .of(Yup.date().nullable())
-    .nullable()
-    .test(
-      "both-dates-present",
-      "Both start and end dates are required",
-      (val) => !val || (val[0] && val[1])
-    ),
+  date: Yup.array().of(Yup.date().nullable()).nullable(),
+  // .test("both-dates-present", (val) => !val || (val[0] && val[1])),
   comment: Yup.string(),
 });
 
 export default function BookingForm() {
   const handleSubmit = async (values, actions) => {
     try {
-      // Симуляція API-запиту
-      // await new Promise((res) => setTimeout(res, 500));
-
       iziToast.success({
         title: "Success",
         message: "The car has been successfully booked!",
@@ -35,7 +26,7 @@ export default function BookingForm() {
     } catch (error) {
       iziToast.error({
         title: "Error",
-        message: "Something went wrong. Please try again.",
+        message: error.message || "Something went wrong. Please try again.",
         position: "topRight",
       });
     }
@@ -91,22 +82,19 @@ export default function BookingForm() {
               </div>
             </div>
 
-            <Field
-              className={css.input}
-              name="date"
-              component={DatePickerField}
-            />
+            <div className={css.fieldWrapper}>
+              <Field
+                name="date"
+                component={DatePickerField}
+                className={css.input}
+              />
+            </div>
 
             <Field
               as="textarea"
               name="comment"
               className={`${css.input} ${css.comment}`}
               placeholder="Comment"
-            />
-            <ErrorMessage
-              name="comment"
-              component="div"
-              className={css.error}
             />
 
             <button className={css.btn} type="submit">

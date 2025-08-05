@@ -3,9 +3,9 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
   padding: 300px 16px 60px;
   text-align: center;
+  width: 100%;
 }
 
 .title {
@@ -69,7 +69,7 @@
 }
 
 /* Desktop */
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
   .content {
     padding-top: 436px;
     padding-left: 128px;

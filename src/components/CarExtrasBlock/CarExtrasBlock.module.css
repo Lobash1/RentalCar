@@ -2,38 +2,64 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
-  gap: 20px;
+  gap: 16px;
   margin: 0 auto;
-  width: 488px;
-  height: 244px;
+  width: 100%;
+
+  box-sizing: border-box;
 }
+
 .title {
-  width: 488px;
-  height: 24px;
-  font-family: "Manrope";
+  width: 100%;
+  font-family: "Manrope", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
-  gap: 16px;
-  width: 488px;
-  height: 200px;
+  gap: 12px;
+  width: 100%;
 }
 
 .li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
   gap: 8px;
-  width: 488px;
-  height: 20px;
+  width: 100%;
+  font-size: 14px;
+  line-height: 20px;
+}
+@media (min-width: 768px) {
+  .block {
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .list {
+    gap: 16px;
+  }
+
+  .li {
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .block,
+  .title,
+  .list,
+  .li {
+    width: 488px;
+  }
 }

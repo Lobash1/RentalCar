@@ -1,12 +1,11 @@
 import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
 import logo from "../../assets/Logo.svg";
-import Container from "../Container/Container.jsx";
 
 export default function Header() {
   return (
     <header className={css.header}>
-      <Container>
+      <div className={css.containerr}>
         <nav className={css.nav}>
           <NavLink to="/" className={css.logo}>
             <img src={logo} alt="Renault logo" className={css.img} />
@@ -27,7 +26,7 @@ export default function Header() {
             </NavLink>
           </div>
         </nav>
-      </Container>
+      </div>
     </header>
   );
 }

@@ -4,7 +4,6 @@
   gap: 16px;
   width: 100%;
   margin: 24px auto 0px;
-  padding: 0 16px;
 }
 
 .grid {
@@ -90,7 +89,6 @@
   margin-top: 8px;
 }
 
-/* Планшети */
 @media screen and (min-width: 768px) {
   .wrapper {
     max-width: 724px;
@@ -134,7 +132,7 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
   .wrapper {
     max-width: 924px;
     margin: 84px auto 0;

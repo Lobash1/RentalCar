@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
-  width: 488px;
-  margin-top: 20px;
+  gap: 16px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 .title {
@@ -12,23 +14,22 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  gap: 8px;
+  gap: 6px;
 }
 
 .nameBlok {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 12px;
   width: 100%;
-  gap: 16px;
+  justify-content: space-between;
 }
 
 .name {
-  align-items: flex-start;
   font-weight: 600;
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 20px;
+  line-height: 28px;
   color: #101828;
   margin: 0;
   flex-shrink: 1;
@@ -36,24 +37,15 @@
 
 .id {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   color: #8d929a;
   white-space: nowrap;
-  align-items: flex-start;
-}
-
-.det {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  width: 100%;
 }
 
 .menuLocation {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   width: 100%;
 }
@@ -66,13 +58,6 @@
   fill: #8d929a;
 }
 
-.locationBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width: 100%;
-}
-
 .city {
   font-size: 14px;
   line-height: 20px;
@@ -80,6 +65,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  align-items: center;
 }
 
 .mileage {
@@ -88,10 +74,11 @@
 
 .price {
   font-weight: 600;
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 20px;
+  line-height: 28px;
   color: #3470ff;
   margin: 0;
+  margin-top: 8px;
 }
 
 .text {
@@ -100,4 +87,47 @@
   color: #475467;
   margin: 0;
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .detalis {
+    gap: 20px;
+    padding: 0 16px;
+  }
+
+  .name {
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  .id {
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  .price {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .detalis {
+    width: 488px;
+    padding: 0;
+  }
+
+  .name {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .price {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .nameBlok {
+    justify-content: flex-start;
+  }
 }

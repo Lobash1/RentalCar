@@ -23,24 +23,23 @@ export default function CarTitle({
           <span className={css.id}>id:{id.slice(-4)}</span>
         </div>
 
-        <div className={css.det}>
-          <div className={css.menuLocation}>
-            <svg className={css.icon} width="16" height="16">
-              <use href="/icons/icomoon.svg#icon-Group" />
-            </svg>
-            <div>
-              <p className={css.city}>
-                {cityCountry}
-                <span className={css.mileage}>
-                  mileage:
-                  {Number(mileage).toLocaleString("en-US").replace(/,/g, " ")}
-                  km
-                </span>
-              </p>
-            </div>
+        <div className={css.menuLocation}>
+          <svg className={css.icon} width="16" height="16">
+            <use href="/icons/icomoon.svg#icon-Group" />
+          </svg>
+          <div>
+            <p className={css.city}>
+              {cityCountry}
+              <span className={css.mileage}>
+                mileage:
+                {Number(mileage).toLocaleString("en-US").replace(/,/g, " ")}
+                km
+              </span>
+            </p>
           </div>
-          <p className={css.price}>${rentalPrice}</p>
         </div>
+
+        <p className={css.price}>${rentalPrice}</p>
       </div>
       <p className={css.text}>{description}</p>
     </div>
