@@ -1,6 +1,6 @@
 # 🚗 RentalCar — Car Rental Web Application
 
-A sleek and responsive car rental catalog application built with **React**, **Redux Toolkit**, and **Vite**. Easily browse available vehicles, filter by brand, price and mileage, and save your favorites.
+A sleek and responsive car rental catalog application built with **React**, **Redux Toolkit**, and **Vite**. Easily browse available vehicles, filter by brand, price, and mileage, and save your favorites.
 
 ## 🛠 Tech Stack
 
@@ -18,28 +18,43 @@ A sleek and responsive car rental catalog application built with **React**, **Re
 - 🔍 Filter cars by:
   - Brand
   - Rental price per day
-  - Mileage (Range: from-to)
-- 📄 View car details with description, specs and rental terms
-- ❤️ Add or remove cars from Favorites (localStorage persists)
+  - Mileage (range: from–to)
+- 📄 View car details with description, specs, and rental terms
+- ❤️ Add or remove cars from Favorites (saved in localStorage)
 - 🔁 Paginated catalog with "Load More"
 - 📱 Fully responsive layout
 
 ## 📁 Project Structure
 
-📂 Папка / Файл 📄 Опис
-src/components/ Повторно використовувані UI-компоненти
-├── CarCard/ Компонент картки автомобіля
-├── CarList/ Список автомобілів
-├── FilterPanel/ Панель фільтрів
-src/pages/ Сторінки додатку
-├── HomePage.jsx Головна сторінка
-├── CatalogPage.jsx Каталог автомобілів
-└── NotFoundPage.jsx Сторінка 404
-src/redux/ Стан додатку (Redux Toolkit)
-├── cars/ Slice для автомобілів
-├── filters/ Slice для фільтрів
-└── favorites/ Slice для обраного
-src/api/ Запити до бекенду через Axios
+| 📂 Folder / 📄 File        | 📝 Description                      |
+| -------------------------- | ----------------------------------- |
+| `src/components/`          | Reusable UI components              |
+| ├── `BookingForm/`         | Booking form component              |
+| ├── `CarCard/`             | Car card component                  |
+| ├── `CarDescription/`      | Car description block               |
+| ├── `CarDetails/`          | Full car details section            |
+| ├── `CarExtrasBlock/`      | Additional features block           |
+| ├── `CarImg/`              | Car image component                 |
+| ├── `CarList/`             | Car list component                  |
+| ├── `CarTitle/`            | Car title block                     |
+| ├── `Container/`           | Layout container                    |
+| ├── `DatePickerField/`     | Custom date picker field            |
+| ├── `FilterPanel/`         | Car filtering panel                 |
+| ├── `Header/`              | Header/navigation component         |
+| ├── `HeroSection/`         | Hero section on homepage            |
+| ├── `Loader/`              | Loading spinner                     |
+| ├── `SpecificationsBlock/` | Car specifications                  |
+| └── `normalizeFilters.js`  | Utility to normalize filter values  |
+| `src/pages/`               | Application pages                   |
+| ├── `HomePage.jsx`         | Home page                           |
+| ├── `CatalogPage.jsx`      | Cars catalog page                   |
+| ├── `CarDetalisPage.jsx`   | Car detalis page                    |
+| └── `NotFoundPage.jsx`     | 404 not found page                  |
+| `src/redux/`               | Global state (Redux Toolkit)        |
+| ├── `cars/`                | Slice for car data                  |
+| ├── `filters/`             | Slice for filter settings           |
+| └── `favourites/`          | Slice for favorites                 |
+| `src/api/`                 | Axios instance and backend requests |
 
 ## ⚙️ Installation
 
@@ -56,18 +71,3 @@ npm install
 # Start the development server
 npm run dev
 ```
-
-📖 Maket
-https://www.figma.com/design/A25LdVK3gZOPJaedrkTwWQ/Rental-Car?node-id=1-200&t=k7ft74Sh8U80bQaz-0
-
-🧪 Backend API
-Data is fetched from a provided mock API:
-https://car-rental-api.goit.global/
-
-📖 API Docs
-https://car-rental-api.goit.global/api-docs/
-
-📬 Contact
-Anastasiia Lobash
-https://www.linkedin.com/in/lobash/
-lobash.n@gmail.com

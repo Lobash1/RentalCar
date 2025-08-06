@@ -9,7 +9,6 @@ const BookingSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   date: Yup.array().of(Yup.date().nullable()).nullable(),
-  // .test("both-dates-present", (val) => !val || (val[0] && val[1])),
   comment: Yup.string(),
 });
 
